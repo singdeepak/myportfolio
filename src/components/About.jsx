@@ -25,12 +25,14 @@ export default function About() {
             I specialize in crafting pixel-perfect UIs, integrating APIs, and optimizing performance. When I'm not coding, you can find me exploring new design trends, contributing to open-source, or hiking in the mountains.
           </p>
           <a
-            href="../assets/Deepak-Resume.pdf"
-            className="inline-block px-6 py-3 bg-violet-300 text-dark rounded-lg shadow hover:bg-violet-400 transition cursor-pointer"
-            download
+            href="/assets/Deepak-Resume.pdf"
+            download="Deepak-Resume.pdf"
+            className="inline-block px-6 py-3 bg-violet-300 text-dark rounded-lg shadow hover:bg-violet-400 transition"
           >
             Download Resume
           </a>
+
+
         </div>
       </div>
 
