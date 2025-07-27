@@ -1,23 +1,31 @@
 import React from 'react';
 import ProjectCard from '../components/ProjectCard';
-import proj1 from '../assets/weather.jpg';
+import proj1 from '../assets/laravel.png';
 import proj2 from '../assets/todo.png';
+import proj3 from '../assets/weather.jpg';
 
 const projectList = [
   {
+    title: 'Laravel Backend',
+    description: 'A backend web app to inspection of vehicles.',
+    image: proj1,
+    liveUrl: 'https://digitalauto-vahan.com/',
+    repoUrl: 'https://github.com/singdeepak/Digital_Auto_Vahan'
+  },
+  {
     title: 'Weather App',
     description: 'A web app to know weather built with React.',
-    image: proj1,
+    image: proj2,
     liveUrl: 'https://react-weather-app-psi-lilac.vercel.app/',
     repoUrl: 'https://github.com/singdeepak/React-Weather-App'
   },
   {
     title: 'Todo App',
     description: 'A web app for daily task built with React.',
-    image: proj2,
+    image: proj3,
     liveUrl: 'https://todo-app-khaki-rho.vercel.app/',
     repoUrl: 'https://github.com/singdeepak/Todo-App'
-  },
+  }
 ];
 
 export default function Projects() {
