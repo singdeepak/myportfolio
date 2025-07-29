@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfileImage from '../assets/profile.jpg';
+import resume from "../assets/Deepak-Resume.pdf";
 
 export default function About() {
   return (
@@ -19,14 +20,16 @@ export default function About() {
             Hello, I’m Deepak Singh
           </h2>
           <p className="text-gray-600 mb-4">
-            I'm a <strong>frontend engineer</strong> passionate about building efficient and engaging web applications. With 1 years of experience in React, Tailwind CSS, and responsive design, I enjoy turning complex problems into intuitive and accessible solutions.
+            I'm a <strong>Web Developer</strong> passionate about building efficient and engaging web applications. With 2 months of internship experience in PHP, Laravel, Mysql,  React, Tailwind CSS, and responsive design, I enjoy turning complex problems into intuitive and accessible solutions.
           </p>
           <p className="text-gray-600 mb-6">
-            I specialize in crafting pixel-perfect UIs, integrating APIs, and optimizing performance. When I'm not coding, you can find me exploring new design trends, contributing to open-source, or hiking in the mountains.
+            I specialize in crafting pixel-perfect UIs, integrating APIs, and backend logic with optimizing performance.
           </p>
           <a
-            href="/assets/Deepak-Resume.pdf"
+            href={resume}
             download="Deepak-Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
             className="inline-block px-6 py-3 bg-violet-300 text-dark rounded-lg shadow hover:bg-violet-400 transition"
           >
             Download Resume
