@@ -42,7 +42,7 @@ export default function About() {
       <div className="mt-16 container mx-auto px-6 lg:px-20">
         <h3 className="text-2xl font-semibold text-gray-800 mb-6">My Skills</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {['React', 'Tailwind CSS', 'TypeScript', 'Node.js', 'Javascript', 'REST', 'Next.js', 'Express.js'].map((skill) => (
+          {['Laravel', 'React', 'Tailwind CSS', 'PHP', 'Javascript', 'REST APIs', 'GIT', 'Postman'].map((skill) => (
             <div key={skill} className="flex items-center space-x-2 bg-white p-4 rounded-lg shadow">
               <span className="w-6 h-6 bg-violet-200 rounded-full flex items-center justify-center text-violet-500 font-semibold">
                 {skill[0]}
