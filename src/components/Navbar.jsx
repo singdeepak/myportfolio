@@ -200,11 +200,11 @@ export default function Navbar() {
                   singhdeepak84088@gmail.com
                 </a>
                 <a 
-                  href="tel:+918655148716" 
+                  href="tel:+918655453456" 
                   className="flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                 >
                   <span className="mr-2">📱</span>
-                  +91 8655148716
+                  +91 8655453456
                 </a>
               </div>
             </div>
