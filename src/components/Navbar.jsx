@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { NavLink } from 'react-router-dom'
-import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState(false)
@@ -37,12 +35,30 @@ export default function Navbar() {
   }, [navOpen])
 
   const navItems = [
-    { to: '/', label: 'Home', id: 'home' },
-    { to: '/about', label: 'About', id: 'about' },
-    { to: '/skills', label: 'Skills', id: 'skills' },
-    { to: '/projects', label: 'Projects', id: 'projects' },
-    { to: '/contact', label: 'Contact', id: 'contact' },
+    { to: '#home', label: 'Home', id: 'home' },
+    { to: '#about', label: 'About', id: 'about' },
+    { to: '#skills', label: 'Skills', id: 'skills' },
+    { to: '#projects', label: 'Projects', id: 'projects' },
+    { to: '#contact', label: 'Contact', id: 'contact' },
   ]
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault()
+    setNavOpen(false)
+    
+    if (href.startsWith('#')) {
+      const target = document.querySelector(href)
+      if (target) {
+        const navbarHeight = 64 // 16 * 4 (h-16)
+        const targetPosition = target.offsetTop - navbarHeight - 20 // Extra 20px spacing
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }
+  }
 
   return (
     <>
@@ -66,7 +82,7 @@ export default function Navbar() {
               
               {/* Logo */}
               <div className="flex items-center">
-                <div className="relative">
+                <div className="relative cursor-pointer" onClick={(e) => handleNavClick(e, '#home')}>
                   <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
                     Portfolio
                   </h1>
@@ -77,37 +93,37 @@ export default function Navbar() {
               {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center space-x-1">
                 {navItems.map((item, index) => (
-                  <NavLink
+                  <a
                     key={item.to}
-                    to={item.to}
-                    className={({ isActive }) =>
-                      `relative px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-gray-100 group ${
-                        isActive 
-                          ? 'text-gray-900 bg-gray-100' 
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`
-                    }
+                    href={item.to}
+                    onClick={(e) => handleNavClick(e, item.to)}
+                    className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-gray-100 group cursor-pointer ${
+                      activeSection === item.id
+                        ? 'text-gray-900 bg-gray-100' 
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
                   >
                     <span className="relative z-10">{item.label}</span>
                     {/* Hover effect */}
                     <div className="absolute inset-0 bg-gray-900 rounded-lg opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
                     {/* Active indicator */}
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-gray-900 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </NavLink>
+                  </a>
                 ))}
               </nav>
 
               {/* CTA Button (Desktop) */}
               <div className="hidden md:block">
-                <NavLink
-                  to="/contact"
-                  className="group inline-flex items-center px-6 py-2.5 bg-gray-900 text-white font-semibold rounded-lg transition-all duration-300 hover:bg-gray-800 hover:transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                <a
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, '#contact')}
+                  className="group inline-flex items-center px-6 py-2.5 bg-gray-900 text-white font-semibold rounded-lg transition-all duration-300 hover:bg-gray-800 hover:transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 cursor-pointer"
                 >
                   <span className="mr-2">Let's Talk</span>
                   <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </NavLink>
+                </a>
               </div>
 
               {/* Mobile Menu Toggle */}
@@ -121,12 +137,19 @@ export default function Navbar() {
                 aria-label="Toggle navigation menu"
               >
                 <div className="relative w-5 h-5">
-                  <AiOutlineMenu className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
+                  <div className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
                     navOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
-                  }`} />
-                  <AiOutlineClose className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
+                  }`}>
+                    <div className="absolute w-5 h-0.5 bg-current top-1.5 left-0 rounded"></div>
+                    <div className="absolute w-5 h-0.5 bg-current top-2.5 left-0 rounded"></div>
+                    <div className="absolute w-5 h-0.5 bg-current top-3.5 left-0 rounded"></div>
+                  </div>
+                  <div className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
                     navOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'
-                  }`} />
+                  }`}>
+                    <div className="absolute w-5 h-0.5 bg-current top-2.5 left-0 rounded rotate-45"></div>
+                    <div className="absolute w-5 h-0.5 bg-current top-2.5 left-0 rounded -rotate-45"></div>
+                  </div>
                 </div>
               </button>
             </div>
@@ -145,7 +168,10 @@ export default function Navbar() {
               onClick={() => setNavOpen(false)}
               className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors duration-200"
             >
-              <AiOutlineClose className="w-5 h-5" />
+              <div className="relative w-5 h-5">
+                <div className="absolute w-5 h-0.5 bg-current top-2.5 left-0 rounded rotate-45"></div>
+                <div className="absolute w-5 h-0.5 bg-current top-2.5 left-0 rounded -rotate-45"></div>
+              </div>
             </button>
           </div>
 
@@ -154,38 +180,36 @@ export default function Navbar() {
             <ul className="space-y-2">
               {navItems.map((item, index) => (
                 <li key={item.to} style={{ animationDelay: `${index * 50}ms` }} className={`${navOpen ? 'animate-fade-in-up' : ''}`}>
-                  <NavLink
-                    to={item.to}
-                    onClick={() => setNavOpen(false)}
-                    className={({ isActive }) =>
-                      `flex items-center px-4 py-3 rounded-xl font-medium transition-all duration-200 group ${
-                        isActive 
-                          ? 'bg-gray-900 text-white shadow-sm' 
-                          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                      }`
-                    }
+                  <a
+                    href={item.to}
+                    onClick={(e) => handleNavClick(e, item.to)}
+                    className={`flex items-center px-4 py-3 rounded-xl font-medium transition-all duration-200 group cursor-pointer ${
+                      activeSection === item.id
+                        ? 'bg-gray-900 text-white shadow-sm' 
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                    }`}
                   >
                     <span className="flex-1">{item.label}</span>
                     <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </NavLink>
+                  </a>
                 </li>
               ))}
             </ul>
 
             {/* Mobile CTA */}
             <div className="mt-8 pt-6 border-t border-gray-200">
-              <NavLink
-                to="/contact"
-                onClick={() => setNavOpen(false)}
-                className="group w-full flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-gray-800 hover:transform hover:scale-105"
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, '#contact')}
+                className="group w-full flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-gray-800 hover:transform hover:scale-105 cursor-pointer"
               >
                 <span className="mr-2">Start a Project</span>
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </NavLink>
+              </a>
             </div>
 
             {/* Contact Info in Mobile Menu */}
@@ -210,6 +234,47 @@ export default function Navbar() {
             </div>
           </div>
         </nav>
+      </div>
+
+      {/* IMPORTANT: Add this spacer div to prevent content from hiding behind navbar */}
+      <div className="h-16"></div>
+
+      {/* Demo Content to show spacing works */}
+      <div className="space-y-20">
+        <section id="home" className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">Home Section</h1>
+            <p className="text-xl text-gray-600">Content is properly spaced below the navbar</p>
+          </div>
+        </section>
+
+        <section id="about" className="min-h-screen bg-gradient-to-br from-green-50 to-white flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">About Section</h1>
+            <p className="text-xl text-gray-600">No content gets hidden behind the fixed navbar</p>
+          </div>
+        </section>
+
+        <section id="skills" className="min-h-screen bg-gradient-to-br from-purple-50 to-white flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">Skills Section</h1>
+            <p className="text-xl text-gray-600">Smooth scrolling with proper offset</p>
+          </div>
+        </section>
+
+        <section id="projects" className="min-h-screen bg-gradient-to-br from-yellow-50 to-white flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">Projects Section</h1>
+            <p className="text-xl text-gray-600">Perfect spacing and navigation</p>
+          </div>
+        </section>
+
+        <section id="contact" className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">Contact Section</h1>
+            <p className="text-xl text-gray-600">All sections are properly accessible</p>
+          </div>
+        </section>
       </div>
 
       <style jsx>{`
