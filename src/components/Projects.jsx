@@ -70,7 +70,7 @@ export default function Projects() {
     : projectList.filter(project => project.category === activeFilter);
 
   return (
-    <section ref={sectionRef} className="py-12 sm:py-16 mb-5 lg:py-20 bg-gray-50 relative overflow-hidden" id="projects">
+    <section ref={sectionRef} className="py-12 sm:py-16 mt-5- lg:py-20 bg-gray-50 relative overflow-hidden" id="projects">
       {/* Background Pattern - Mobile Optimized */}
       <div className="absolute inset-0 opacity-20">
         <div 

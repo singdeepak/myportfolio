@@ -77,7 +77,7 @@ export default function Contact() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-12 mb-5 sm:py-16 lg:py-20 bg-white relative overflow-hidden" id="contact">
+    <section ref={sectionRef} className="py-12 mt-5 sm:py-16 lg:py-20 bg-white relative overflow-hidden" id="contact">
       {/* Background Pattern - Hidden on mobile for better performance */}
       <div className="absolute inset-0 opacity-20 hidden sm:block">
         <div 
