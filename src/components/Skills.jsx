@@ -60,7 +60,7 @@ export default function Skills() {
   };
 
   return (
-    <section ref={sectionRef} className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden" id="skills">
+    <section ref={sectionRef} className="py-12 mb-5 sm:py-16 lg:py-20 bg-white relative overflow-hidden" id="skills">
       {/* Background Pattern - Mobile Optimized */}
       <div className="absolute inset-0 opacity-20">
         <div 
