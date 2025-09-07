@@ -12,10 +12,7 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (section) => {
-    console.log(`Navigate to ${section}`);
-    // Replace with your navigation logic
-  };
+
 
   return (
     <section className="relative min-h-screen bg-white overflow-hidden mt-5">
@@ -94,25 +91,27 @@ export default function Hero() {
 
               {/* CTA Buttons - Mobile Optimized */}
               <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                <button 
-                  onClick={() => handleNavClick('projects')}
+                <a
+                  href="/projects"
                   className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 text-white font-semibold rounded-lg transition-all duration-300 hover:bg-gray-800 hover:transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 text-sm sm:text-base"
+                  aria-label="View My Work"
                 >
                   <span className="mr-2">View My Work</span>
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </button>
-                
-                <button 
-                  onClick={() => handleNavClick('contact')}
+                </a>
+
+                <a
+                  href="/contact"
                   className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg transition-all duration-300 hover:bg-gray-900 hover:text-white hover:transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 text-sm sm:text-base"
+                  aria-label="Get In Touch"
                 >
                   <span className="mr-2">Get In Touch</span>
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                </button>
+                </a>
               </div>
 
               {/* Professional Links - Mobile Responsive */}
